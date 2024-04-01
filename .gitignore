@@ -1,0 +1,5 @@
+links.csv
+imageSet/*.jpg
+frameSet/*.jpg
+speedTest/*.jpg
+__pycache__/
