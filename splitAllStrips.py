@@ -4,7 +4,7 @@ import concurrent.futures
 from multiprocessing import cpu_count
 import time
 
-max_workers = cpu_count - 1
+max_workers = cpu_count() - 1
 
 def splitAllStrips(directory):
     startTime = time.time()
@@ -13,5 +13,12 @@ def splitAllStrips(directory):
         executor.map(splitStrip.fetchPages, image_paths)
     print(f"Completed in {time.time() - startTime} seconds")
 
-input_directory = 'imageSet/'
-splitAllStrips(input_directory)
+inputDirectory = 'imageSet/'
+
+outputDirectory = 'frameSet/'
+
+dir = os.path.dirname(__file__)
+dir = os.path.join(dir, outputDirectory)
+if not os.path.exists(dir): os.mkdir(dir)
+
+splitAllStrips(inputDirectory)

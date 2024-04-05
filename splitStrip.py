@@ -27,7 +27,7 @@ from PIL.ImageOps import autocontrast
 _version = "0.1"
 
 # output directory
-def_dir = "speedTest/"
+def_dir = "frameSet/"
 
 # gutter color
 gcolor = 255
