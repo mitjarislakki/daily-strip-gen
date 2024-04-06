@@ -1,6 +1,7 @@
-from transformers import BertTokenizer, BertModel #pip install transformers
-import torch #pip install torch
+from transformers import BertTokenizer, BertModel #pip install transformers --user
+import torch #pip install torch --user
 from sklearn.metrics.pairwise import cosine_similarity
+import pandas as pd
 
 # Load FinBERT tokenizer
 tokenizer = BertTokenizer.from_pretrained('TurkuNLP/bert-base-finnish-cased-v1')
@@ -13,10 +14,13 @@ def preprocess_text(text):
     return processed_text
 
 # Example input sentence
-input_sentence = "hulvaton sarjakuva"
+input_sentence = "neliö"
 processed_input = preprocess_text(input_sentence)
 
 # Example list of predefined sentences
+#tähän sit tiedoston luku:
+#df = pd.read_csv(csv_file)
+#predefined_sentences =  df['description'].tolist()
 predefined_sentences = [
     "hauska sarjakuva",
     "tylsä sarjakuva",
