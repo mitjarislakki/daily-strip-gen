@@ -1,3 +1,4 @@
+
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 from PIL import Image
@@ -18,6 +19,7 @@ def display_images_with_same_height(image_paths, target_height=200):
 
     plt.tight_layout()
     plt.show()
+
 
 # Example usage
 image_paths = ['frameSet/0-0.jpg', 'frameSet/15-0.jpg', 'frameSet/12-1.jpg']  # Paths to your images
