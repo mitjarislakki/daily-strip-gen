@@ -28,35 +28,33 @@ predefined_sentences =  df['texts'].tolist()
 result_dict = dict(zip(df['texts'], df['img']))
 
 # Preprocess each sentence in the predefined list
-processed_predefined_sentences = [preprocess_text(sentence) for sentence in predefined_sentences]
+processed_predefined_sentences = []
+for sentence in predefined_sentences:
+    input = str(sentence)
+    if len(input) != 0:
+        p = preprocess_text(input)
+        processed_predefined_sentences += p
 
 # Load pre-trained FinBERT model
 model = BertModel.from_pretrained('TurkuNLP/bert-base-finnish-cased-v1')
 
 # Encode input and predefined sentences
 with torch.no_grad():
-    input_ids = tokenizer(processed_input, return_tensors='pt')['input_ids']
     predefined_ids = tokenizer(processed_predefined_sentences, return_tensors='pt', padding=True, truncation=True)['input_ids']
-    input_embeddings = model(input_ids)[0].mean(dim=1)  # Mean pooling over token embeddings for input sentence
     predefined_embeddings = model(predefined_ids)[0].mean(dim=1)  # Mean pooling over token embeddings for predefined sentences
+    input_ids = tokenizer(processed_input, return_tensors='pt')['input_ids']
+    input_embeddings = model(input_ids)[0].mean(dim=1)  # Mean pooling over token embeddings for input sentence
 
 # Calculate cosine similarity
 similarity_scores = cosine_similarity(input_embeddings, predefined_embeddings)
-
-# Find the index of the most similar predefined sentence
-best_match_index = similarity_scores.argmax()
-
-# Get the best matching predefined sentence
-best_match_sentence = predefined_sentences[best_match_index]
+print(similarity_scores)
 
 numStories = 3
 # Find the index of the most similar story
 closestStories = np.argpartition(similarity_scores[0], -numStories)[-numStories:]
 closestStories = closestStories[np.argsort(similarity_scores[0][closestStories])][::-1]
+print(closestStories)
 
-
-print("Input Sentence:", input_sentence)
-print("Best Match:", best_match_sentence)
 paths = [result_dict[predefined_sentences[i]] for i in closestStories]
 print(paths)
 display_images_with_same_height(paths, target_height=200)
