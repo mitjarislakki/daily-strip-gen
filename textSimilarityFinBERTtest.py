@@ -14,20 +14,16 @@ def preprocess_text(text):
     return processed_text
 
 # Example input sentence
-input_sentence = "neliö"
+input_sentence = "mikäköhän YLLÄTYS\nNÄISSÄ ON."
 processed_input = preprocess_text(input_sentence)
 
 # Example list of predefined sentences
 #tähän sit tiedoston luku:
-#df = pd.read_csv(csv_file)
-#predefined_sentences =  df['description'].tolist()
-predefined_sentences = [
-    "hauska sarjakuva",
-    "tylsä sarjakuva",
-    "keskiverto sarjakuva",
-    "kulmaton sarjakuva",
-    "kulmallinen sarjakuva"
-]
+csv_file = 'computerVision.csv'
+df = pd.read_csv(csv_file)
+predefined_sentences =  df['texts'].tolist()
+
+result_dict = dict(zip(df['texts'], df['img']))
 
 # Preprocess each sentence in the predefined list
 processed_predefined_sentences = [preprocess_text(sentence) for sentence in predefined_sentences]
