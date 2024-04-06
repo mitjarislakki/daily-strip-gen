@@ -4,3 +4,4 @@ frameSet/*.jpg
 speedTest/*.jpg
 __pycache__/
 stripgen
+computerVision.csv

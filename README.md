@@ -13,6 +13,14 @@
 - Install tesseract with Finnish language data https://tesseract-ocr.github.io/tessdoc/Installation.html
 `pip install opencv-python pytesseract`
 
+- Install gcloud CLI https://cloud.google.com/sdk/docs/install
+- Set up auth in gcloud: `gcloud auth application-default login`
+
+`pip install google-cloud-vision`
+
 ### Text similarity
 `pip install scikit-learn --user`
 - run textSimilarity.py 
+
+### Display
+`pip install matplotlib`

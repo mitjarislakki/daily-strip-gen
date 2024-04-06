@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load the CSV file into a pandas DataFrame
-df = pd.read_csv('images.csv')
+df = pd.read_csv('computerVision.csv')
 
 def get_image_path(description):
    
