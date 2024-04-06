@@ -85,6 +85,9 @@ if run:
                 # 'labels': labels
             }
             rowList.append(row)
+        count += 1
+        print(count)
+        if count == 50: break
 
 
 df = pd.DataFrame(rowList)
