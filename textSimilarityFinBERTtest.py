@@ -57,4 +57,6 @@ closestStories = closestStories[np.argsort(similarity_scores[0][closestStories])
 
 print("Input Sentence:", input_sentence)
 print("Best Match:", best_match_sentence)
-display_images_with_same_height(closestStories, target_height=200)
+paths = [result_dict[predefined_sentences[i]] for i in closestStories]
+print(paths)
+display_images_with_same_height(paths, target_height=200)
