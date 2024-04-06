@@ -2,6 +2,8 @@ from transformers import BertTokenizer, BertModel #pip install transformers --us
 import torch #pip install torch --user
 from sklearn.metrics.pairwise import cosine_similarity
 import pandas as pd
+import numpy as np
+from framesToStrip import display_images_with_same_height
 
 # Load FinBERT tokenizer
 tokenizer = BertTokenizer.from_pretrained('TurkuNLP/bert-base-finnish-cased-v1')
@@ -14,7 +16,7 @@ def preprocess_text(text):
     return processed_text
 
 # Example input sentence
-input_sentence = "mikäköhän YLLÄTYS\nNÄISSÄ ON."
+input_sentence = input("anna lause: ")
 processed_input = preprocess_text(input_sentence)
 
 # Example list of predefined sentences
@@ -47,5 +49,12 @@ best_match_index = similarity_scores.argmax()
 # Get the best matching predefined sentence
 best_match_sentence = predefined_sentences[best_match_index]
 
+numStories = 3
+# Find the index of the most similar story
+closestStories = np.argpartition(similarity_scores[0], -numStories)[-numStories:]
+closestStories = closestStories[np.argsort(similarity_scores[0][closestStories])][::-1]
+
+
 print("Input Sentence:", input_sentence)
 print("Best Match:", best_match_sentence)
+display_images_with_same_height(closestStories, target_height=200)
