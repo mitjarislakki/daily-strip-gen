@@ -1,3 +1,4 @@
+`python -m venv stripgen`
 
 ### Dataset processing:
 `pip install pandas selenium beautifulsoup4 requests pillow --user`
@@ -9,7 +10,8 @@
 
 
 ### Image to text
-TODO
+- Install tesseract with Finnish language data https://tesseract-ocr.github.io/tessdoc/Installation.html
+`pip install opencv-python pytesseract`
 
 ### Text similarity
 `pip install scikit-learn --user`
