@@ -3,3 +3,4 @@ imageSet/*.jpg
 frameSet/*.jpg
 speedTest/*.jpg
 __pycache__/
+stripgen
